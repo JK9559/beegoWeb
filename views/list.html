@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>首页 - 用户列表页面</title>
+    <link rel="shortcut icon" href="/static/img/favicon.png" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+        .am-cf{
+            height: 50px;
+            margin-top: 30px;
+            line-height: 50px;
+            text-align: center;
+            vertical-align: middle;
+            margin-left: 40%;
+        }
+        .am-fr{
+            float: left;
+            line-height: 50px;
+            text-align: center;
+            vertical-align: middle;
+            height: 50px;
+            margin-top: -15px;
+        }
+        .am-pagination{
+            list-style:none;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .am-pagination li{
+            float:left;
+            margin-left: 10px;
+        }
+        .am-pagination li a{
+            text-decoration:none;
+        }
+        .am-jl{
+            float: left;
+            margin-left: 20px;
+        }
+        .am-active{
+            color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="row pull-right" style="margin-bottom: 20px;margin-right: 5px;text-align:right;margin-right: 40px;">
+    <a class="btn btn-success" href="/Home/Edit?Id=0">添加</a>
+</div>
+
+<table class="table table-striped table-hover table-bordered ">
+    <thead>
+    <th style="text-align: center">ID</th>
+    <th style="text-align: center">名称</th>
+    <th style="text-align: center">昵称</th>
+    <th style="text-align: center">密码</th>
+    <th style="text-align: center">Email</th>
+    <th style="text-align: center">性别</th>
+    <th style="text-align: center">手机号</th>
+    <th style="text-align: center">操作</th>
+    </thead>
+
+    <tbody id="sortable">
+    {{range $index, $item := .datas}}
+        <tr class="sort-item"  id="module_{{$item.Id}}" value="{{$item.Id}}">
+            <td style="text-align: center;width: 150px;"><span class="label label-default" >{{$item.Id}}</span></td>
+            <td style="text-align: center;width: 240px;" ><strong>{{$item.Name}}</strong></td>
+            <td style="text-align: center;width: 240px;" ><strong>{{$item.Nickname}}</strong></td>
+            <td style="text-align: center;width: 240px;" ><strong>{{$item.Pwd}}</strong></td>
+            <td style="text-align: center;width: 240px;" ><strong>{{$item.Email}}</strong></td>
+            <td style="text-align: center;width: 240px;" ><strong>{{$item.Sex}}</strong></td>
+            <td style="text-align: center;width: 240px;" ><strong>{{$item.Phone}}</strong></td>
+            <td style="text-align: center;width: 150px;">
+                <a href="/Home/Edit?Id={{$item.Id}}" class="label label-info" title="修改" >修改</a>
+                <a href="/Home/Delete?Id={{$item.Id}}" class="label label-info" title="删除">删除</a>
+            </td>
+        </tr>
+    {{end}}
+    </tbody>
+</table>
+<div class="am-cf">
+
+    <div class="am-fr">
+        <ul class="am-pagination">
+            <li class=""><a href="/Home/List?page={{.paginator.firstpage}}">«</a></li>
+            {{range $index,$page := .paginator.pages}}
+                <li  {{if eq $.paginator.currpage $page }}class="am-active"{{end}}>
+                    <a href="/Home/List?page={{$page}}">{{$page}}</a></li>
+            {{end}}
+            <li><a href="/Home/List?page={{.paginator.lastpage}}">»</a></li>
+        </ul>
+    </div>
+    <div class="am-jl">
+        共{{.totals}}条记录 共记{{.paginator.totalpages}} 页 当前{{.paginator.currpage}}页
+    </div>
+</div>
+<script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+
+</body>
+</html>

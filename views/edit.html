@@ -1,0 +1,54 @@
+<div class="col-xs-6 col-sm-9">
+    <form class="form-horizontal" method="post" id="mainPageContent" action="/Home/Update" enctype="multipart/form-data">
+        {{if .data}}
+            <input type="hidden" name="Id" value="{{.data.Id}}">
+        {{end}}
+        <div class="form-group has-success">
+            <label  class="col-sm-2 control-label">名称</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="name" name="name" placeholder="姓名"
+                       {{if .data}}value="{{.data.Name}}"{{end}}>
+            </div>
+        </div>
+        <div class="form-group has-success">
+            <label  class="col-sm-2 control-label">昵称</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="昵称"
+                       {{if .data}}value="{{.data.Nickname}}"{{end}}>
+            </div>
+        </div>
+        <div class="form-group has-success">
+            <label  class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="pwd" name="pwd" placeholder="密码"
+                       {{if .data}}value="{{.data.Pwd}}"{{end}}>
+            </div>
+        </div>
+        <div class="form-group has-success">
+            <label  class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="email" name="email" placeholder="Email"
+                       {{if .data}}value="{{.data.Email}}"{{end}}>
+            </div>
+        </div>
+        <div class="form-group has-success">
+            <label  class="col-sm-2 control-label">性别</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="sex" name="sex" placeholder="Sex"
+                       {{if .data}}value="{{.data.Sex}}"{{end}}>
+            </div>
+        </div>
+        <div class="form-group has-success">
+            <label  class="col-sm-2 control-label">手机号</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone"
+                       {{if .data}}value="{{.data.Phone}}"{{end}}>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-info">确定</button>
+            </div>
+        </div>
+    </form>
+</div>
